@@ -13,7 +13,7 @@ body {
   justify-content: flex-start;
   text-align: center;
   /* height: 100vh;*/
-  color: black;
+  color: white;
   margin: 0;
 }
 
@@ -48,7 +48,6 @@ cite {
   margin: 0.5rem 1rem;
 }
 
-
 @media (min-width: 900px) {
   #container {
     display: flex;
@@ -61,12 +60,9 @@ cite {
   #container {
     height: 70vh;
   }
-  #to-do {
-    height: 30vh;
-  }
 }
 
-/* Code de Pierre - backgrounds */
+/* Backgrounds */
 /* filtre flou + opacité réduite + transition en fondu */
 body:before {
   content: "";
@@ -92,15 +88,7 @@ body:before {
   -o-transition: all 1.5s linear;
 }
 
-/*TO DO*/
-.intro {
-  margin: 30px 0px;
-  font-weight: bold;
-}
-
-p {
-  font-weight: 600;
-}
+/*TO DOs*/
 
 #enter:hover {
   opacity: 0.8;
@@ -146,8 +134,4 @@ input {
 .done {
   background: #51df70 !important;
   color: #fff;
-}
-
-.delete {
-  display: none;
 }

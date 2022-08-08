@@ -42,6 +42,8 @@ function chrono() {
 
 function chronoStart() {
   document.chronoForm.startstop.value = "stop";
+  document.chronoForm.startstop.classList.remove("btn-primary");
+  document.chronoForm.startstop.classList.add("btn-danger");
   // onClick start : start deviens stop
   document.chronoForm.startstop.onclick = chronoStop;
   // onClick stop : appeler fonction chronoStop
@@ -55,6 +57,8 @@ function chronoStart() {
 
 function chronoContinue() {
   document.chronoForm.startstop.value = "stop";
+  document.chronoForm.startstop.classList.remove("btn-primary");
+  document.chronoForm.startstop.classList.add("btn-danger");
   // "stop" doit être affiché tant que le chrono tourne
   document.chronoForm.startstop.onclick = chronoStop;
   // onClick = fonction stop donc document.chronoForm.startstop.value = "start"
@@ -69,7 +73,9 @@ function chronoContinue() {
 // Fonction stop chrono
 
 function chronoStop() {
-  document.chronoForm.startstop.value = "start";
+  document.chronoForm.startstop.value = "continue";
+  document.chronoForm.startstop.classList.remove("btn-danger");
+  document.chronoForm.startstop.classList.add("btn-primary");
   // onClick : changer value stop to start
   document.chronoForm.startstop.onclick = chronoContinue;
   // onClick : appeler fonction Continue

@@ -11,7 +11,7 @@ const time = document.getElementById("time"),
 function showTime() {
   //utiliser Moment pour format francais
   const dateNow = moment(),
-    dateHourFormat = "dddd Do MMMM, hh:mm:ss";
+    dateHourFormat = "dddd Do MMMM, HH:mm:ss";
   dateNow.locale("fr");
   //afficher l'heure
   time.innerHTML = dateNow.format(dateHourFormat);
@@ -43,47 +43,26 @@ function addZero(n) {
 }
 */
 
-//Set Background and Greeting
-function setBgGreet() {
-  //variante avec new Date()
-  /*let now = new Date(),
-    hour = now.getHours();*/
-  const dateNow = moment(),
-    hourFormat = "hh";
-  let hour = dateNow.format(hourFormat);
-  if (hour < 12) {
-    //Matin
-    refreshBg(bgMorning);
-    setInterval("refreshBg(bgMorning)", 7000);
-    document.body.style.color = "white";
-    greeting.textContent = "Bonne journée";
-  } else if (hour < 18) {
-    //Apres-midi
-    refreshBg(bgAfternoon);
-    setInterval("refreshBg(bgAfternoon)", 7000);
-    document.body.style.color = "white";
-    greeting.textContent = "Bonne après-midi";
-  } else {
-    //Soir
-    refreshBg(bgAfternoon);
-    setInterval("refreshBg(bgAfternoon)", 7000);
-    document.body.style.color = "white";
-    greeting.textContent = "Bonne soirée";
-  }
-}
-
 //Set Name
 function setName(e) {
-  if (e.type === "keydown") {
-    //Make sure enter is pressed
-    if (e.key === "Enter") {
-      localStorage.setItem("name", e.target.textContent);
-      name.blur();
-    }
-  } else {
-    localStorage.setItem("name", e.target.textContent);
+  localStorage.setItem("name", e.target.textContent);
+  //Make sure enter is pressed
+  if (e.type === "keydown" && e.key === "Enter") {
+    name.blur();
   }
 }
+// function setName(e) {
+//   if (e.type === "keydown") {
+//     //Make sure enter is pressed
+//     if (e.key === "Enter") {
+//       localStorage.setItem("name", e.target.textContent);
+//       name.blur();
+//     }
+//   } else {
+//     localStorage.setItem("name", e.target.textContent);
+//   }
+// }
+
 //variante keypress & e.which
 /*function setName(e) {
   if (e.type === "keypress") {
@@ -109,16 +88,10 @@ function getName() {
 
 //Set Focus
 function setFocus(e) {
-  if (e.type === "keydown") {
-    //Make sure enter is pressed
-    if (e.keyCode == 13) {
-      localStorage.setItem("focus", e.target.textContent);
-      //localStorage.setItem("focus", e.target.innerText);
-      focus.blur();
-    }
-  } else {
-    localStorage.setItem("focus", e.target.textContent);
-    //localStorage.setItem("focus", e.target.innerText);
+  localStorage.setItem("focus", e.target.textContent);
+  //Make sure enter is pressed
+  if (e.type === "keydown" && e.keyCode == 13) {
+    focus.blur();
   }
 }
 
@@ -148,31 +121,39 @@ name.addEventListener("blur", setName);
 focus.addEventListener("keydown", setFocus);
 focus.addEventListener("blur", setFocus);
 
-//Run
-setInterval(showTime, 1000);
-setBgGreet();
-getName();
-getFocus();
-addRandomQuote();
+// Resfresh background
+function refreshBg() {
+  const dateNow = moment(),
+    hourFormat = "HH";
+  let hour = dateNow.format(hourFormat);
+  let list;
 
-// CODE DE PIERRE
-// resfresh de l'arrière-plan
+  if (hour < 12) {
+    //Matin
+    list = bgMorning;
+    greeting.textContent = "Bonne journée";
+  } else if (hour < 18) {
+    //Apres-midi
+    list = bgAfternoon;
+    greeting.textContent = "Bonne après-midi";
+  } else {
+    //Soir
+    list = bgAfternoon;
+    greeting.textContent = "Bonne soirée";
+  }
 
-function refreshBg(object) {
   const random = Math.floor(Math.random() * 6);
-  const randomBg = object[random];
-  console.log("randomBg", randomBg);
-  const imageBg = `${randomBg.link}`;
-  document.body.style.backgroundImage = imageBg;
+  const randomBg = list[random];
+  document.body.style.backgroundImage = randomBg.link;
   document.body.style.backgroundSize = "cover";
   document.body.style.backgroundRepeat = "no-repeat";
 }
 
-//script TO DO
+// TO DO tasks
 const enterButton = document.getElementById("enter");
 const input = document.getElementById("userInput");
 const ul = document.querySelector("ul");
-const item = document.getElementsByTagName("li");
+// const item = document.getElementsByTagName("li");
 
 function inputLength() {
   return input.value.length;
@@ -180,6 +161,7 @@ function inputLength() {
 
 function createListElement() {
   const li = document.createElement("li");
+  // Escape HTML characters using createTextNode instead of li.innerHTML or li.textContent
   li.appendChild(document.createTextNode(input.value));
   ul.appendChild(li);
   input.value = "";
@@ -196,7 +178,7 @@ function createListElement() {
   dBtn.addEventListener("click", deleteListItem);
 
   function deleteListItem() {
-    li.classList.add("delete");
+    li.remove();
   }
 }
 
@@ -215,3 +197,11 @@ function addListAfterKeypress(event) {
 enterButton.addEventListener("click", addListAfterClick);
 
 input.addEventListener("keypress", addListAfterKeypress);
+
+//Run
+setInterval(showTime, 1000);
+refreshBg();
+setInterval(refreshBg, 7000);
+getName();
+getFocus();
+addRandomQuote();

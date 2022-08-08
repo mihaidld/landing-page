@@ -14,7 +14,7 @@
       integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="css/style.css" />
     <title>Page d'accueil</title>
   </head>
   <body>
@@ -41,6 +41,7 @@
             name="chronotime"
             id="chronotime"
             value="0:00:00:00"
+            class="mb-1 text-center"
           />
           <!--Affichage string chrono-->
           <input
@@ -48,6 +49,7 @@
             name="startstop"
             value="start"
             onClick="chronoStart()"
+            class="btn btn-primary mb-1"
           />
           <!-- container bouton start/stop chrono-->
           <input
@@ -55,19 +57,13 @@
             name="reset"
             value="reset"
             onClick="chronoReset()"
+            class="btn btn-warning"
           />
           <!-- container bouton reset chrono-->
         </form>
       </aside>
     </div>
     <div id="to-do" class="container">
-      <!-- <div class="row">
-        <div class="intro col-12">
-                  <div>
-            <div class="border1"></div>
-          
-        </div>
-      </div></div>-->
       <div class="row">
         <div class="col-12">
           <input
@@ -76,9 +72,7 @@
             placeholder="Nouvelle tâche.."
             maxlength="27"
           />
-          <button id="enter" class="btn btn-warning">
-            ADD
-          </button>
+          <button id="enter" class="btn btn-warning">ADD</button>
         </div>
       </div>
       <div class="row">
@@ -90,9 +84,9 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
     <script src="https://momentjs.com/downloads/moment-with-locales.min.js"></script>
-    <script src="/js/backgrounds.js"></script>
-    <script src="/js/quotes.js"></script>
-    <script src="/js/chrono.js"></script>
-    <script src="/js/main.js"></script>
+    <script src="js/backgrounds.js"></script>
+    <script src="js/quotes.js"></script>
+    <script src="js/chrono.js"></script>
+    <script src="js/main.js"></script>
   </body>
 </html>
