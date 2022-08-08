@@ -2,7 +2,7 @@
 
 ### Presentation
 
-Productivity Landing Page similar to Momentum Chrome extension (as per [deployed site](https://productivity-landing-page.netlify.app/)
+Productivity Landing Page similar to Momentum Chrome extension (as per [deployed site](https://productivity-landing-page.netlify.app/) )
 
 ### Features
 
